@@ -88,15 +88,15 @@ return [
     'locale' => env('APP_LOCALE', 'en'),
 
     'domains' => [
-        'yaseen.test',
+        'amhak.test',
         'yaseen-s.test',
-        'yaseen.diamondquetta.com',
+        'amhak.nexgenpakistan.com',
         'testyaseen.diamondquetta.com',
         'yaseen.run',
     ],
 
     'databases' => [
-        'yaseen',
+        'amhak',
         'test',
     ],
 

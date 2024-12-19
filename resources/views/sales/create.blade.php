@@ -52,7 +52,15 @@
                                     </tfoot>
                                 </table>
                             </div>
-                            <div class="col-3"></div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="tax">Tax</label>
+                                    <div class="input-group mb-3">
+                                    <input type="number" name="tax" oninput="updateTotal()" id="tax" step="any" value="0" class="form-control no_zero">
+                                    <span class="input-group-text" id="taxValue">0.00</span>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-3">
                                 <div class="form-group">
                                     <label for="discount">Discount</label>
@@ -197,9 +205,6 @@
     font-family: 'Noto Sans', Arial, sans-serif;
 }
     </style>
-
-
-
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 @section('page-js')
@@ -240,7 +245,7 @@
                                 html += '<option value="' + warehouse.id + '" >' + warehouse.name + '</option>';
                             });
                         html += '</select></td>';
-                        html += '<td class="no-padding"><input type="number" name="qty[]" oninput="updateChanges(' + id +')" min="0" step="any" value="0" class="form-control text-center" id="qty_' + id + '"></div></td>';
+                        html += '<td class="no-padding"><input type="number" name="qty[]" oninput="updateChanges(' + id +')" min="0" step="any" value="1" class="form-control text-center" id="qty_' + id + '"></div></td>';
                         html += '<td class="no-padding"><input type="number" name="price[]" oninput="updateChanges(' + id + ')" step="any" value="'+product.price+'" min="1" class="form-control text-center" id="price_' + id + '"></td>';
                         html += '<td class="no-padding"><input type="number" name="amount[]" readonly step="any" value="0.00" min="0" class="form-control text-center" id="amount_' + id + '"></td>';
                         html += '<td> <span class="btn btn-sm btn-danger" onclick="deleteRow('+id+')">X</span> </td>';
@@ -276,9 +281,11 @@
             $("#totalAmount").html(totalAmount.toFixed(2));
 
             var discount = parseFloat($("#discount").val());
+            var tax = parseFloat($("#tax").val());
+            var taxValue = totalAmount * tax / 100;
+            $("#taxValue").html(taxValue);
             var dc = parseFloat($("#dc").val());
-
-            var net = (totalAmount + dc) - discount;
+            var net = (totalAmount + dc + taxValue) - discount;
 
             $("#net").val(net);
 

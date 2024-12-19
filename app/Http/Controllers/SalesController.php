@@ -73,6 +73,7 @@ class SalesController extends Controller
                   'notes'           => $request->notes,
                   'discount'        => $request->discount,
                   'dc'              => $request->dc,
+                  'tax'             => $request->tax,
                   'customerName'    => $request->customerName,
                   'refID'           => $ref,
                 ]
@@ -105,12 +106,15 @@ class SalesController extends Controller
 
             }
 
+            $tax = $request->tax;
+            $taxValue = $total * $tax / 100;
             $discount = $request->discount;
             $dc = $request->dc;
-            $net = ($total + $dc) - $discount;
+            $net = ($total + $dc + $taxValue) - $discount;
 
             $sale->update(
                 [
+                    'taxValue'   => $taxValue,
                     'total'   => $net,
                 ]
             );

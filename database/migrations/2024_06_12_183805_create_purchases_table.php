@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('date');
             $table->float('discount')->default(0);
             $table->float('dc')->default(0);
+
             $table->float('total')->default(0);
             $table->string("inv")->nullable();
             $table->text('notes')->nullable();

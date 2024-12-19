@@ -96,7 +96,7 @@
     @yield('page-js')
     <script>
         let timeout;
-        $(".no_zero").on("input", function (){
+        $(".no_zero").on("focusout", function (){
             clearTimeout(timeout);  // Clear any previous timeout to avoid multiple triggers
     var $this = $(this);
 

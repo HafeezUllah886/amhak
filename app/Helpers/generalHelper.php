@@ -129,14 +129,14 @@ function productStockValue($id)
 
 function projectNameAuth()
 {
-    return "YASEEN RICE DEALER";
+    return "AMHAK LIMITED";
 }
 
 function projectNameHeader()
 {
-    return "YASEEN RICE DEALER";
+    return "AMHAK LIMITED";
 }
 function projectNameShort()
 {
-    return "YRD";
+    return "AL";
 }

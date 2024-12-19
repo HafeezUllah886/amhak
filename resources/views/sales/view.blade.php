@@ -6,12 +6,23 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="hstack gap-2 justify-content-end d-print-none p-2 mt-4">
-                                <a href="{{url('sales/pdf/')}}/{{$sale->id}}" class="btn btn-info ml-4"><i class="ri-file-line mr-4"></i> Generate PDF</a>
-                                <a href="https://web.whatsapp.com/" target="_blank" class="btn btn-success ml-4"><i class="ri-whatsapp-line mr-4"></i> Whatsapp</a>
+                               {{--  <a href="{{url('sales/pdf/')}}/{{$sale->id}}" class="btn btn-info ml-4"><i class="ri-file-line mr-4"></i> Generate PDF</a>
+                                <a href="https://web.whatsapp.com/" target="_blank" class="btn btn-success ml-4"><i class="ri-whatsapp-line mr-4"></i> Whatsapp</a> --}}
                                 <a href="javascript:window.print()" class="btn btn-primary ml-4"><i class="ri-printer-line mr-4"></i> Print</a>
                             </div>
                             <div class="card-header border-bottom-dashed p-4">
-                                @include('layout.header')
+                                <div class="row">
+                                    <div class="col-10">
+                                        <div class="row">
+                                            <div class="col-2"><img src="{{asset('assets/images/logo.png')}}" width="100px" alt=""></div>
+                                            <div class="col-10"><h1 class="mb-0 mt-2">{{projectNameAuth()}}</h1><h3 class="mt-0">ORGANIC RICE</h3></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <h6> <span class="text-muted">Inv# </span>{{$sale->id}}</h6>
+                                        <h6> <span class="text-muted">Date: </span>{{date("d M Y" ,strtotime($sale->date))}}</h6>
+                                    </div>
+                                </div>
                             </div>
                             <!--end card-header-->
                         </div><!--end col-->
@@ -22,18 +33,16 @@
                             </div>
                             <div class="card-body p-4">
                                 <div class="row g-3">
-                                    <div class="col-3">
-                                        <p class="text-muted mb-2 text-uppercase fw-semibold">Inv #</p>
-                                        <h5 class="fs-14 mb-0">{{$sale->id}}</h5>
+                                    <div class="col-6">
+                                        <p class="text-muted mb-2 text-uppercase fw-semibold">Seller </p>
+                                        <h5 class="fs-14 mb-0">{{projectNameAuth()}}</h5>
+                                        <h5 class="fs-14 mb-0">Phone: 012344567</h5>
+                                        <h5 class="fs-14 mb-0">Email: abc@email.com</h5>
                                     </div>
                                     <div class="col-6">
                                         <p class="text-muted mb-2 text-uppercase fw-semibold">Customer</p>
                                         <h5 class="fs-14 mb-0">{{$sale->customer->title}}</h5>
                                         <h6 class="fs-14 mb-0">{{$sale->customerID != 2 ? $sale->customer->address : $sale->customerName}}</h6>
-                                    </div>
-                                    <div class="col-3">
-                                        <p class="text-muted mb-2 text-uppercase fw-semibold">Date</p>
-                                        <h5 class="fs-14 mb-0">{{date("d M Y" ,strtotime($sale->date))}}</h5>
                                     </div>
                                     <!--end col-->
                                     <!--end col-->
@@ -74,6 +83,10 @@
                                             <tr class="border-1 border-dark">
                                                 <th colspan="4" class="text-end">Total</th>
                                                 <th class="text-end">{{number_format($sale->details->sum('amount'),2)}}</th>
+                                            </tr>
+                                            <tr class="m-0 p-0">
+                                                <th colspan="4" class="text-end p-0 m-0">Tax - {{$sale->tax}}% (+)</th>
+                                                <th class="text-end p-0 m-0 ">{{number_format($sale->taxValue,2)}}</th>
                                             </tr>
                                             <tr class="m-0 p-0">
                                                 <th colspan="4" class="text-end p-0 m-0">Discount (-)</th>

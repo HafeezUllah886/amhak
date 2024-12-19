@@ -14,9 +14,9 @@ class productsSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            ['name' => "1.5Kw Invertor", "pprice" => 35000, "price" => 38000, 'discount' => 1500, 'catID' => 1],
-            ['name' => "565 Watt N-Type Solar Panel", "pprice" => 22000, "price" => 24000, 'discount' => 1000, 'catID' => 1],
-            ['name' => "Battery", "pprice" => 15000, "price" => 17000, 'discount' => 500, 'catID' => 2],
+            ['name' => "Basmati Supreme 5Kg", "pprice" => 2000, "price" => 2500, 'discount' => 200, 'catID' => 1],
+            ['name' => "Saila 10kg", "pprice" => 2800, "price" => 3500, 'discount' => 150, 'catID' => 1],
+
         ];
         products::insert($data);
     }
